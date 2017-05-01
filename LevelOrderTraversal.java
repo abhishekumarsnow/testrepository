@@ -14,7 +14,7 @@ public class LevelOrderTraversal {
 		node.right = new Node(2);
 		node.left.left = new Node(4);
 		node.right.left = new Node(2);
-		printLevel(node);
+		printLevelOrderLineByLine(node);
 		
 
 	}
@@ -37,5 +37,44 @@ public class LevelOrderTraversal {
 		}
 		
 	}
-
+	
+	public static void printLevelOrderLineByLine(Node root){
+		Queue<Node> queue1 = new LinkedList<Node>();
+		Queue<Node> queue2 = new LinkedList<Node>();
+		if(root == null){
+			return;
+		}
+		
+		queue1.add(root);
+		while(true){
+		while(! queue1.isEmpty()){
+			Node temp = queue1.remove();
+			System.out.print(temp.data+" ");
+			if(temp.left != null){
+				queue2.add(temp.left);
+			}
+			if(temp.right != null){
+				queue2.add(temp.right);
+			}
+			
+		}
+		System.out.println();
+		while(!queue2.isEmpty()){
+			Node temp = queue2.remove();
+			System.out.print(temp.data+" ");
+			if(temp.left != null){
+				queue1.add(temp.left);
+			}
+			if(temp.right != null){
+				queue1.add(temp.right);
+			}
+		}
+		
+		System.out.println();
+		if(queue1.isEmpty() && queue2.isEmpty()){
+			break;
+		}
+	}
 }
+}
+
